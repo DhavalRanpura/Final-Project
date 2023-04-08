@@ -9,7 +9,6 @@ class LessonInline(admin.StackedInline):
     model = Lesson
     extra = 5
 
-
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
     inlines = [LessonInline]
@@ -24,9 +23,17 @@ class LessonAdmin(admin.ModelAdmin):
 
 class ChoiceInline(admin.StackedInline):
     model = Choice
-    
+    extra = 5
+
+# Register your models here.
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
+    list_display = ('question_text', 'grade','lesson')
+
+
+class ChoiceAdmin(admin.ModelAdmin):
+    list_display = ['choice_text','is_correct']
+
 
 # <HINT> Register Question and Choice models here
 
@@ -36,4 +43,3 @@ admin.site.register(Instructor)
 admin.site.register(Learner)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice, ChoiceAdmin)
-
