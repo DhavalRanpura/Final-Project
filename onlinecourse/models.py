@@ -75,6 +75,10 @@ class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     content = models.TextField()
 
+    def __str__(self):
+        return "Name: " + self.title
+
+
 
 # Enrollment model
 # <HINT> Once a user enrolled a class, an enrollment entry should be created between the user and course
@@ -106,7 +110,8 @@ class Question(models.Model):
     # question text
     # question grade/mark    
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    question_text = models.TextField()
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    text = models.CharField(max_length=300, default="input a question")
     grade = models.IntegerField(default=0)
     
     # <HINT> A sample model method to calculate if learner get the score of the question
